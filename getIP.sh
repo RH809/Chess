@@ -1,0 +1,1 @@
+ipconfig getsummary en0 > ipinfo.txt
