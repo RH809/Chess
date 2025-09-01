@@ -47,7 +47,7 @@ public class Notations {
 		frame.getLayeredPane().add(panel);
 		frame.getLayeredPane().addKeyListener(switchMove);
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(1000, 30, VIEW_WIDTH, VIEW_HEIGHT);
+		panel.setBounds(950, 30, VIEW_WIDTH, VIEW_HEIGHT);
 		panel.setAutoscrolls(true);
 		panel.setLayout(null);
 		panel.addKeyListener(switchMove);

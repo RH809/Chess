@@ -21,7 +21,7 @@ Wireless LAN adapter Wi-Fi:
 
    Connection-specific DNS Suffix  . : resnet.purdue.edu
    IPv6 Address. . . . . . . . . . . : 2607:ac80:409:7:d210:3f21:bd3a:dcb8
-   Temporary IPv6 Address. . . . . . : 2607:ac80:409:7:3d42:6f85:1e6c:6ebe
+   Temporary IPv6 Address. . . . . . : 2607:ac80:409:7:e4db:72ac:d1f2:90d0
    Link-local IPv6 Address . . . . . : fe80::37a5:9cd:1f7a:2b04%8
    IPv4 Address. . . . . . . . . . . : 100.69.150.13
    Subnet Mask . . . . . . . . . . . : 255.255.240.0

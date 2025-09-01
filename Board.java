@@ -47,7 +47,7 @@ public class Board implements MouseListener, MouseMotionListener, ActionListener
 	private double dragX, dragY; // the coordinates of where to display the dragged piece
 	private Notations notations; // reference to the Notations object connected to this board
 	private String promoteNotation; // the string for the promote notation
-	private JLabel whoseMove, promoteText; // JLabels to show whose move it is and to give directions when promoting
+	private JLabel whoseMove, promoteText, promoteText2; // JLabels to show whose move it is and to give directions when promoting
 	private JLayeredPane lPane; // the layered pane used to hold all the JComponents in the JFrame (layered pane to allow multiple components on top of each other)
 	private JFrame frame; // the JFrame for this board
 	private Timer timer; // timer used to time how long a piece is pressed for to determine if it is a click of a drag
@@ -81,6 +81,10 @@ public class Board implements MouseListener, MouseMotionListener, ActionListener
 		myColor = color;
 		this.lPane = lPane;
 		this.frame = frame;
+		JScrollPane scrollPane = new JScrollPane(this.lPane);
+		frame.add(scrollPane);
+		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		this.notations = notations;
 		notations.setChessBoard(this);
 		//board = new Spaces[BOARDSIZE][BOARDSIZE];
@@ -140,14 +144,14 @@ public class Board implements MouseListener, MouseMotionListener, ActionListener
 		whoseMove = new JLabel("White Move", SwingConstants.CENTER);
 		lPane.add(whoseMove);
 		whoseMove.setFont(new Font("SanSerif", 50, 30));
-		whoseMove.setBounds(750, 50, 200, 50);
+		whoseMove.setBounds(725, 50, 200, 50);
 
 		// create buttons for promotion
 		promoteSelection = new JButton[4];
 		for(int i = 0; i < 4; i++){
 			newButton = new JButton("");
 			//lPane.add(newButton);
-			newButton.setBounds(810, 150 + i * SQUARESIZE, SQUARESIZE, SQUARESIZE);
+			newButton.setBounds(780, 170 + i * SQUARESIZE, SQUARESIZE, SQUARESIZE);
 			newButton.addActionListener(this);
 			newButton.setFocusable(false);
 			promoteSelection[i] = newButton;
@@ -159,9 +163,14 @@ public class Board implements MouseListener, MouseMotionListener, ActionListener
 		promoteSelection[3].setActionCommand("promote Knight");
 
 		promoteText = new JLabel("");
-		promoteText.setBounds(745, 100, 250, 30);
+		promoteText.setBounds(760, 100, 150, 30);
 		promoteText.setFont(new Font("SanSerif", 30, 20));
 		lPane.add(promoteText);
+
+		promoteText2 = new JLabel("");
+		promoteText2.setBounds(775, 125, 100, 30);
+		promoteText2.setFont(new Font("SanSerif", 30, 20));
+		lPane.add(promoteText2);
 
 		// create sound player
 		soundPlayer = new SoundPlayer();
@@ -235,7 +244,8 @@ public class Board implements MouseListener, MouseMotionListener, ActionListener
 		}
 
 		if(!onPreviousMove && promoting){
-			promoteText.setText("Select piece to promote to");
+			promoteText.setText("Select piece to");
+			promoteText2.setText("promote to");
 			if(lPane.getComponentsInLayer(JLayeredPane.DRAG_LAYER).length == 0){
 				for(int i = 0; i < 4; i++){
 					lPane.add(promoteSelection[i], JLayeredPane.DRAG_LAYER);
@@ -244,6 +254,7 @@ public class Board implements MouseListener, MouseMotionListener, ActionListener
 		}
 		else{
 			promoteText.setText("");
+			promoteText2.setText("");
 			if(lPane.getComponentsInLayer(JLayeredPane.DRAG_LAYER).length != 0){
 				for(int i = 0; i < 4; i++){
 					lPane.remove(promoteSelection[i]);

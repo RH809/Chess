@@ -1,7 +1,4 @@
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 
 import javax.swing.*;
 
@@ -17,14 +14,15 @@ public class Chat {
     // view height - height of only the text area
 
     public Chat(JFrame frame, ChatFocusListener cfl){
-        frame.setBounds(150, 50, 1900, 800); // resize frame if chat is added
-        frame.getLayeredPane().setBounds(0, 0, 1900, 800);
-        
+        frame.setBounds(150, 50, 1500, 800); // resize frame if chat is added
+        frame.getLayeredPane().setBounds(0, 0, 1000, 800);
+        frame.getLayeredPane().setPreferredSize(new Dimension(1000, 800));
 
         displayPanel = new JPanel();
 		frame.getLayeredPane().add(displayPanel);
 		displayPanel.setBackground(Color.WHITE);
-		displayPanel.setBounds(1400, 30, VIEW_WIDTH, VIEW_HEIGHT + 20);
+		displayPanel.setBounds(1300, 30, VIEW_WIDTH + 300, VIEW_HEIGHT + 20);
+        displayPanel.setPreferredSize(new Dimension(VIEW_WIDTH + 300, VIEW_HEIGHT + 20));
 		displayPanel.setAutoscrolls(true);
 		displayPanel.setLayout(null);
 		
@@ -50,7 +48,7 @@ public class Chat {
         inputPanel = new JPanel();
         frame.getLayeredPane().add(inputPanel);
         inputPanel.setBackground(Color.WHITE);
-        inputPanel.setBounds(1400, VIEW_HEIGHT + 50, VIEW_WIDTH, PANEL_HEIGHT - VIEW_HEIGHT - 20);
+        inputPanel.setBounds(1300, VIEW_HEIGHT + 50, VIEW_WIDTH, PANEL_HEIGHT - VIEW_HEIGHT - 20);
         inputPanel.setAutoscrolls(true);
         inputPanel.setLayout(null);
 
