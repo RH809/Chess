@@ -513,9 +513,9 @@ public class Board implements MouseListener, MouseMotionListener, ActionListener
 	public void resetBoard(boolean send){
 		Coordinator.turn = 0;
 		Coordinator.winner = -2;
+		notations.reset();
 		chessBoard.resetBoard();
 		updateBoard();
-		notations.reset();
 		draw();
 		if(send && myCoordinator != null) myCoordinator.sendReset();
 	}

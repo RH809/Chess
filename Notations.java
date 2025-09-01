@@ -300,6 +300,7 @@ public class Notations {
 		num = 0;
 		viewRow = 0;
 		selected = 0;
+		chessBoard.currentMove();
 
 		textArea = new JTextArea();
 		textArea.setFont(new Font("San Serif", 20, SPACE_SIZE));
