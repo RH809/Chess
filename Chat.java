@@ -9,20 +9,20 @@ public class Chat {
     private JTextField textField;
     private ChatListener chatListener;
     private JButton enter;
-    private static final int VIEW_WIDTH = 425, PANEL_HEIGHT = 700, VIEW_HEIGHT = 630, CHAT_WIDTH = 350; 
+    private static final int VIEW_WIDTH = 225, PANEL_HEIGHT = 700, VIEW_HEIGHT = 630, CHAT_WIDTH = 200; 
     // panel height - total height of everything
     // view height - height of only the text area
 
     public Chat(JFrame frame, ChatFocusListener cfl){
-        frame.setBounds(150, 50, 1500, 800); // resize frame if chat is added
-        frame.getLayeredPane().setBounds(0, 0, 1000, 800);
-        frame.getLayeredPane().setPreferredSize(new Dimension(1000, 800));
+        frame.setBounds(150, 50, 1525, 800); // resize frame if chat is added
+        frame.getLayeredPane().setBounds(0, 0, 1525, 800);
+        frame.getLayeredPane().setPreferredSize(new Dimension(1525, 800));
 
         displayPanel = new JPanel();
 		frame.getLayeredPane().add(displayPanel);
 		displayPanel.setBackground(Color.WHITE);
-		displayPanel.setBounds(1300, 30, VIEW_WIDTH + 300, VIEW_HEIGHT + 20);
-        displayPanel.setPreferredSize(new Dimension(VIEW_WIDTH + 300, VIEW_HEIGHT + 20));
+		displayPanel.setBounds(1275, 30, VIEW_WIDTH, VIEW_HEIGHT + 20);
+        displayPanel.setPreferredSize(new Dimension(VIEW_WIDTH, VIEW_HEIGHT + 20));
 		displayPanel.setAutoscrolls(true);
 		displayPanel.setLayout(null);
 		
@@ -33,7 +33,7 @@ public class Chat {
         displayScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		
 		textArea = new JTextArea();
-		textArea.setFont(new Font(new JLabel().getFont().getName(), 15, 15));
+		textArea.setFont(new Font(new JLabel().getFont().getName(), 15, 10));
 		displayScrollPane.setViewportView(textArea);
 		textArea.setEditable(false);
 		textArea.setFocusable(false);
@@ -48,7 +48,7 @@ public class Chat {
         inputPanel = new JPanel();
         frame.getLayeredPane().add(inputPanel);
         inputPanel.setBackground(Color.WHITE);
-        inputPanel.setBounds(1300, VIEW_HEIGHT + 50, VIEW_WIDTH, PANEL_HEIGHT - VIEW_HEIGHT - 20);
+        inputPanel.setBounds(1275, VIEW_HEIGHT + 50, VIEW_WIDTH, PANEL_HEIGHT - VIEW_HEIGHT - 20);
         inputPanel.setAutoscrolls(true);
         inputPanel.setLayout(null);
 
@@ -59,7 +59,7 @@ public class Chat {
         inputScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         textField = new JTextField();
-        textField.setFont(new Font(new JLabel().getFont().getName(), 15, 15));
+        textField.setFont(new Font(new JLabel().getFont().getName(), 15, 10));
         inputScrollPane.setViewportView(textField);
 
         enter = new JButton("Send");

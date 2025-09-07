@@ -81,10 +81,6 @@ public class Board implements MouseListener, MouseMotionListener, ActionListener
 		myColor = color;
 		this.lPane = lPane;
 		this.frame = frame;
-		JScrollPane scrollPane = new JScrollPane(this.lPane);
-		frame.add(scrollPane);
-		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		this.notations = notations;
 		notations.setChessBoard(this);
 		//board = new Spaces[BOARDSIZE][BOARDSIZE];
