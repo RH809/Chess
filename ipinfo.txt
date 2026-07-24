@@ -7,13 +7,10 @@ Ethernet adapter Ethernet:
    Media State . . . . . . . . . . . : Media disconnected
    Connection-specific DNS Suffix  . : 
 
-Ethernet adapter vEthernet (WSL (Hyper-V firewall)):
+Unknown adapter Local Area Connection:
 
+   Media State . . . . . . . . . . . : Media disconnected
    Connection-specific DNS Suffix  . : 
-   Link-local IPv6 Address . . . . . : fe80::c2e8:fdb0:5f8c:30d5%51
-   IPv4 Address. . . . . . . . . . . : 172.29.208.1
-   Subnet Mask . . . . . . . . . . . : 255.255.240.0
-   Default Gateway . . . . . . . . . : 
 
 Wireless LAN adapter Local Area Connection* 1:
 
@@ -27,16 +24,12 @@ Wireless LAN adapter Local Area Connection* 2:
 
 Wireless LAN adapter Wi-Fi:
 
-   Connection-specific DNS Suffix  . : resnet.purdue.edu
-   IPv6 Address. . . . . . . . . . . : 2607:ac80:409:7:d210:3f21:bd3a:dcb8
-   Temporary IPv6 Address. . . . . . : 2607:ac80:409:7:8593:7d94:5fbc:ad4c
-   Link-local IPv6 Address . . . . . : fe80::37a5:9cd:1f7a:2b04%8
-   IPv4 Address. . . . . . . . . . . : 100.69.151.96
-   Subnet Mask . . . . . . . . . . . : 255.255.240.0
-   Default Gateway . . . . . . . . . : fe80::5:73ff:fea0:708%8
-                                       100.69.144.1
-
-Ethernet adapter Bluetooth Network Connection:
-
-   Media State . . . . . . . . . . . : Media disconnected
    Connection-specific DNS Suffix  . : 
+   IPv6 Address. . . . . . . . . . . : 2601:647:6782:ed0::d9fe
+   IPv6 Address. . . . . . . . . . . : 2601:647:6782:ed0:6e9e:5453:b8e7:9a22
+   Temporary IPv6 Address. . . . . . : 2601:647:6782:ed0:2c12:9769:ba9d:becc
+   Link-local IPv6 Address . . . . . : fe80::37a5:9cd:1f7a:2b04%9
+   IPv4 Address. . . . . . . . . . . : 10.0.0.134
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . : fe80::c650:9cff:fe62:46ef%9
+                                       10.0.0.1
