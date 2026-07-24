@@ -108,20 +108,6 @@ public class Coordinator implements WindowListener{
 		confirmationWindow = createConfirmationWindow();
 		waitForRequestWindow = createRequestWindow();
 		answerFromClient = null;
-
-		frame.addFocusListener(new FocusListener() {
-
-			@Override
-			public void focusGained(FocusEvent e) {
-				System.out.println("focus gained");
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				System.out.println("focus lost");
-			}
-			
-		});
 	}
 
 	public Coordinator(int color){ // single player
