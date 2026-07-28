@@ -524,7 +524,7 @@ public class Board implements MouseListener, MouseMotionListener, ActionListener
 		chessBoard.resetBoard();
 		updateBoard();
 		draw();
-		if(send && myCoordinator != null) myCoordinator.sendReset();
+		if(send && myCoordinator != null && myCoordinator.getColor() != 2) myCoordinator.sendReset();
 	}
 	
 	/**
@@ -580,7 +580,10 @@ public class Board implements MouseListener, MouseMotionListener, ActionListener
 		draggedPiece = null;
 		pieceDragged = false;
 		try {
-			if(!checkValid(new Scanner(file))) return false;
+			if(!checkValid(new Scanner(file))) {
+				System.out.println("failed validation");
+				return false;
+			}
 			// verified - can now directly edit board
 			Scanner scanner = new Scanner(file);
 			String header = scanner.nextLine();
@@ -658,9 +661,10 @@ public class Board implements MouseListener, MouseMotionListener, ActionListener
 				notations.reset();
 				notations.setNewGameState(piecesStr);
 				draw();
-				if(myCoordinator != null) myCoordinator.sendGameState(piecesStr); // send game state
+				if(myCoordinator != null && myCoordinator.getColor() != 2) myCoordinator.sendGameState(piecesStr); // send game state
 			}
 			else{
+				System.out.println("moves only");
 				resetBoard(true);
 			}
 			
@@ -680,6 +684,7 @@ public class Board implements MouseListener, MouseMotionListener, ActionListener
 						newR = line.charAt(4) - '0';
 						newC = line.charAt(6) - '0';
 						moves ++;
+						System.out.println(moves);
 						if(line.length() > 7){
 							promote = line.substring(8);
 							((Pawn)(board[oldR][oldC].getPiece())).move(newR, newC, promote);
@@ -695,7 +700,7 @@ public class Board implements MouseListener, MouseMotionListener, ActionListener
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
-							if(myCoordinator != null) myCoordinator.sendMove("*" + oldR + oldC + newR + newC + promote); // send moves
+							if(myCoordinator != null && myCoordinator.getColor() != 2) myCoordinator.sendMove("*" + oldR + oldC + newR + newC + promote); // send moves
 						}
 						else{
 							board[oldR][oldC].getPiece().move(newR, newC);
@@ -710,14 +715,14 @@ public class Board implements MouseListener, MouseMotionListener, ActionListener
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
-							if(myCoordinator != null) myCoordinator.sendMove("*" + oldR + oldC + newR + newC); // send moves
+							if(myCoordinator != null && myCoordinator.getColor() != 2) myCoordinator.sendMove("*" + oldR + oldC + newR + newC); // send moves
 						}
 					}
 					Coordinator.turn = (Coordinator.turn == 0) ? moves % 2 : 1 - (moves % 2);
+					scanner.close();
 				}
 			});
 			thread.start();
-			//scanner.close();
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -736,6 +741,7 @@ public class Board implements MouseListener, MouseMotionListener, ActionListener
 		if(!scanner.hasNextLine()) return false;
 		String header = scanner.nextLine();
 		ChessBoard temp = null;
+		System.out.println(header);
 		if(header.equals("new game state")){
 			// check game state for validity
 			temp = new ChessBoard(false);
@@ -769,7 +775,7 @@ public class Board implements MouseListener, MouseMotionListener, ActionListener
 			oldC = line.charAt(2) - '0';
 			newR = line.charAt(4) - '0';
 			newC = line.charAt(6) - '0';
-			//System.out.println(oldR + " " + oldC + " " + newR + " " + newC);
+			System.out.println(oldR + " " + oldC + " " + newR + " " + newC);
 			if(!(oldR >= 0 && oldR < 8 && oldC >= 0 && oldC < 8 && newR >= 0 && newR < 8 && newC >= 0 && newC < 8) || 
 				tempBoard[oldR][oldC].isEmpty() || tempBoard[oldR][oldC].getPiece().getColor() != moveColor) {
 					System.out.println("invalid " + tempBoard[oldR][oldC].isEmpty());
@@ -799,6 +805,7 @@ public class Board implements MouseListener, MouseMotionListener, ActionListener
 					newPiece = new Bishop(newR, newC, color, null);
 				}
 				else{
+					System.out.println("invalid promotion");
 					return false;
 				}
 				tempBoard[newR][newC].getPiece().setCoords(new Coordinates(newR, newC));
@@ -808,9 +815,18 @@ public class Board implements MouseListener, MouseMotionListener, ActionListener
 				// use move instead
 			}
 			else{
+				
 				tempBoard[oldR][oldC].getPiece().move(newR, newC);
 				tempBoard[newR][newC].setPiece(tempBoard[oldR][oldC].getPiece());
 				tempBoard[oldR][oldC].setEmpty();
+				if (tempBoard[newR][newC].getPiece() instanceof King && Math.abs(oldC - newC) == 2) {
+					int oldRookR = newR;
+					int oldRookC = (newC == 6) ? 7 : 0;
+					Piece rook = tempBoard[oldRookR][oldRookC].getPiece();
+					tempBoard[oldRookR][oldRookC].setEmpty();
+					tempBoard[rook.getCoords().getR()][rook.getCoords().getC()].setPiece(rook);
+				}
+				
 			}
 			moveColor = 1 - moveColor;
 		}
@@ -1073,7 +1089,7 @@ public class Board implements MouseListener, MouseMotionListener, ActionListener
 	 * tell other board to also start play from the same move
 	 */
 	public void sendPlayFromHere(int move){
-		if(myCoordinator != null) myCoordinator.sendPlayFromHere(move);
+		if(myCoordinator != null && myCoordinator.getColor() != 2) myCoordinator.sendPlayFromHere(move);
 	}
 
 	/**
