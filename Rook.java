@@ -202,6 +202,7 @@ public class Rook extends Piece{
 	 * @return whether or not castling places the other king in check from the rook being moved
 	 */
 	public boolean castling() {
+		//System.out.println("castling");
 		if(coords.getC() == 0) {
 			coords.setC(3);
 		}

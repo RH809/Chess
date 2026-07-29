@@ -4,8 +4,6 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.BufferedReader;
@@ -155,6 +153,8 @@ public class Coordinator implements WindowListener{
 	public String getOperations() { return operations; }
 
 	public String getUsername() { return username; }
+
+	public int getColor() { return color; }
 
 
 	/**

@@ -27,7 +27,7 @@ Wireless LAN adapter Wi-Fi:
    Connection-specific DNS Suffix  . : 
    IPv6 Address. . . . . . . . . . . : 2601:647:6782:ed0::d9fe
    IPv6 Address. . . . . . . . . . . : 2601:647:6782:ed0:6e9e:5453:b8e7:9a22
-   Temporary IPv6 Address. . . . . . : 2601:647:6782:ed0:2c12:9769:ba9d:becc
+   Temporary IPv6 Address. . . . . . : 2601:647:6782:ed0:e85e:39b4:cb4f:538c
    Link-local IPv6 Address . . . . . : fe80::37a5:9cd:1f7a:2b04%9
    IPv4 Address. . . . . . . . . . . : 10.0.0.134
    Subnet Mask . . . . . . . . . . . : 255.255.255.0
