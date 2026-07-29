@@ -522,6 +522,7 @@ public class Board implements MouseListener, MouseMotionListener, ActionListener
 		Coordinator.winner = -2;
 		notations.reset();
 		chessBoard.resetBoard();
+		notations.saveStartingPos();
 		updateBoard();
 		draw();
 		if(send && myCoordinator != null && myCoordinator.getColor() != 2) myCoordinator.sendReset();
@@ -660,11 +661,12 @@ public class Board implements MouseListener, MouseMotionListener, ActionListener
 				//game end check
 				notations.reset();
 				notations.setNewGameState(piecesStr);
+				notations.saveStartingPos();
 				draw();
 				if(myCoordinator != null && myCoordinator.getColor() != 2) myCoordinator.sendGameState(piecesStr); // send game state
 			}
 			else{
-				System.out.println("moves only");
+				//System.out.println("moves only");
 				resetBoard(true);
 			}
 			
@@ -684,7 +686,6 @@ public class Board implements MouseListener, MouseMotionListener, ActionListener
 						newR = line.charAt(4) - '0';
 						newC = line.charAt(6) - '0';
 						moves ++;
-						System.out.println(moves);
 						if(line.length() > 7){
 							promote = line.substring(8);
 							((Pawn)(board[oldR][oldC].getPiece())).move(newR, newC, promote);
@@ -741,7 +742,7 @@ public class Board implements MouseListener, MouseMotionListener, ActionListener
 		if(!scanner.hasNextLine()) return false;
 		String header = scanner.nextLine();
 		ChessBoard temp = null;
-		System.out.println(header);
+		//System.out.println(header);
 		if(header.equals("new game state")){
 			// check game state for validity
 			temp = new ChessBoard(false);
@@ -775,16 +776,16 @@ public class Board implements MouseListener, MouseMotionListener, ActionListener
 			oldC = line.charAt(2) - '0';
 			newR = line.charAt(4) - '0';
 			newC = line.charAt(6) - '0';
-			System.out.println(oldR + " " + oldC + " " + newR + " " + newC);
+			//System.out.println(oldR + " " + oldC + " " + newR + " " + newC);
 			if(!(oldR >= 0 && oldR < 8 && oldC >= 0 && oldC < 8 && newR >= 0 && newR < 8 && newC >= 0 && newC < 8) || 
 				tempBoard[oldR][oldC].isEmpty() || tempBoard[oldR][oldC].getPiece().getColor() != moveColor) {
-					System.out.println("invalid " + tempBoard[oldR][oldC].isEmpty());
+					//System.out.println("invalid " + tempBoard[oldR][oldC].isEmpty());
 					return false;
 				}
 			tempBoard[oldR][oldC].getPiece().setLegalMoves();
 			
 			if(!tempBoard[oldR][oldC].getPiece().isLegalMove(new Coordinates(newR, newC))) {
-				System.out.println("illegal " + tempBoard[oldR][oldC].getPiece());
+				//System.out.println("illegal " + tempBoard[oldR][oldC].getPiece());
 				return false;
 			}
 			if(line.length() > 7){

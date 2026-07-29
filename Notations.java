@@ -299,7 +299,7 @@ public class Notations {
 		row = 0;
 		num = 0;
 		viewRow = 0;
-		selected = 0;
+		selected = -1;
 		chessBoard.currentMove();
 
 		textArea = new JTextArea();

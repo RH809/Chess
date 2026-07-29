@@ -199,7 +199,7 @@ public class King extends Piece{
 		if(!checked){
 			checked = (chessBoard.discoveredCheck(this, r, c));
 		}
-		System.out.println("castled: " + castledRight + " " + castledLeft);
+		//System.out.println("castled: " + castledRight + " " + castledLeft);
 		castle = false;
 		coords.setR(r);
 		coords.setC(c);
